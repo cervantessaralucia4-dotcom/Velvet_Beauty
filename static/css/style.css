@@ -1,0 +1,154 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+}
+
+body{
+    background: #fafafa;
+}
+
+/* NAVBAR */
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 80px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+nav h1{
+    color: #d63384;
+    font-size: 32px;
+}
+
+nav ul{
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+nav li{
+    cursor: pointer;
+}
+
+/* HERO */
+
+.hero{
+    height: 90vh;
+    background: linear-gradient(
+        rgba(0,0,0,0.3),
+        rgba(0,0,0,0.3)
+    ),
+    url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9');
+
+    background-size:cover;
+    background-position: center;
+
+    display: flex;
+    align-items: center;
+    padding-left: 80px;
+
+    color: white;
+}
+
+.hero-text h2{
+    font-size: 65px;
+    margin-bottom: 20px;
+}
+
+.hero-text p{
+    font-size: 22px;
+    margin-bottom: 30px;
+}
+
+.hero button{
+    padding: 15px 35px;
+    border: none;
+    background: #d63384;
+    color: white;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* PRODUCTS */
+
+.products{
+    padding: 80px;
+}
+
+.section-title{
+    font-size: 40px;
+    margin-bottom: 50px;
+    color: #222;
+}
+
+.product-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.product-card{
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.8);
+    border: 1px solid #eee;
+
+    transition: 0.3s;
+}
+
+.product-card:hover{
+    transform: translateY(-10px);
+}
+
+.product-card img{
+    width: 100%;
+    height: 320px;
+    object-fit: contain;
+    background: #f8f8f8;
+    padding:20px;
+}
+
+.product-info{
+    padding: 25px;
+}
+
+.product-info h3{
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.brand{
+    color: gray;
+    margin-bottom: 15px;
+}
+
+.price{
+    font-size: 22px;
+    font-weight: bold;
+    color: #d63384;
+    margin-bottom: 20px;
+}
+
+.product-info button{
+    width: 100%;
+    padding: 14px;
+    border: none;
+    background: #d63384;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+
+    transition: 0.3s;
+}
+
+.product-info button:hover{
+    background: #b0256c;
+}

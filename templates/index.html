@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velvet Beauty</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <nav>
+        <h1>Velvet Beauty</h1>
+
+        <ul>
+            <li>Inicio</li>
+            <li>Productos</li>
+            <li>Marcas</li>
+            <li>Contacto</li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h2>Descubre tu belleza</h2>
+            <p>Productos premium de maquillaje y skincare</p>
+            <button>Comprar ahora</button>
+        </div>
+    </section>
+
+    <section class="products">
+
+    <h2 class="section-title">
+        Productos Destacados
+    </h2>
+
+    <div class="product-grid">
+
+        {% for product in products %}
+
+        <div class="product-card">
+
+            <img src="{{ product[4] }}" alt="producto">
+
+            <div class="product-info">
+
+                <h3>{{ product[1] }}</h3>
+
+                <p class="brand">
+                    {{ product[2] }}
+                </p>
+
+                <p class="price">
+                    ${{ product[3] }}
+                </p>
+
+                <button>
+                    Agregar al carrito
+                </button>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+    
+</body>
+</html>
