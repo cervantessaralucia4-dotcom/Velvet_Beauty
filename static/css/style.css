@@ -152,3 +152,40 @@ nav li{
 .product-info button:hover{
     background: #b0256c;
 }
+
+/* ADMIN */
+
+.admin-container{
+    width: 600px;
+    margin: 50px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.admin-container h1{
+    margin-bottom: 30px;
+}
+
+.admin-container form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.admin-container input,
+.admin-container textarea,
+.admin-container select{
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.admin-container button{
+    padding: 15px;
+    background: #d63384;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
