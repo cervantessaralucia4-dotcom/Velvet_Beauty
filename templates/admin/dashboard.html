@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <h2>Velvet Beauty</h2>
+
+        <ul>
+
+            <li>Dashboard</li>
+
+            <li>Productos</li>
+
+            <li>Categorías</li>
+
+            <li>Pedidos</li>
+
+            <li>Usuarios</li>
+
+            <li>Configuración</li>
+
+        </ul>
+
+    </aside>
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+        <div class="topbar">
+
+            <h1>Dashboard</h1>
+
+        </div>
+
+        <!-- CARDS -->
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <h3>Total Productos</h3>
+
+                <p>{{ total_products }}</p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>Ventas</h3>
+
+                <p>$12,450</p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>Usuarios</h3>
+
+                <p>842</p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>Pedidos</h3>
+
+                <p>56</p>
+
+            </div>
+
+        </div>
+
+        <!-- TABLE -->
+
+        <div class="recent-products">
+
+            <h2>Productos recientes</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Producto</th>
+                        <th>Marca</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+                    {% for product in recent_products %}
+                    
+                    <tr>
+
+                        <td>{{ product[0] }}</td>
+                        <td>{{ product[1] }}</td>
+                        <td>${{ product[2] }}</td>
+                        <td>{{ product[3] }}</td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                    <tr>
+
+                        <td>Dior Lip Oil</td>
+                        <td>Dior Beauty</td>
+                        <td>$38.50</td>
+                        <td>8</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

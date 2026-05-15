@@ -23,7 +23,18 @@ mysql = MySQL(app)
 def home():
     cursor = mysql.connection.cursor()
 
-    cursor.execute("SELECT * FROM products")
+    cursor.execute("""
+    SELECT
+        id,
+        name,
+        brand,
+        description,
+        price,
+        stock,
+        category_id,
+        main_image
+    FROM products
+""")
 
     products = cursor.fetchall()
 
@@ -49,9 +60,6 @@ def add_product():
         'admin/add_product.html',
         categories=categories
     )
-
-if __name__ == '__main__':
-    app.run(debug=True)
 
 from flask import request, redirect
 
@@ -110,3 +118,63 @@ def save_product():
     cursor.close()
 
     return redirect('/')
+
+@app.route('/admin/dashboard')
+def dashboard():
+
+    cursor = mysql.connection.cursor()
+
+    # TOTAL PRODUCTOS
+
+    cursor.execute("SELECT COUNT(*) FROM products")
+
+    total_products = cursor.fetchone()[0]
+
+    # PRODUCTOS RECIENTES
+
+    cursor.execute("""SELECT name, brand, price, stock FROM products ORDER BY id DESC LIMIT 5""")
+
+    recent_products = cursor.fetchall()
+
+    cursor.close()
+
+    return render_template(
+        'admin/dashboard.html',
+        total_products=total_products,
+        recent_products=recent_products
+    )
+
+@app.route('/admin/products')
+def admin_products():
+
+    cursor = mysql.connection.cursor()
+
+    query = """
+       SELECT 
+       products.id, 
+       products.name, 
+       products.brand, 
+       products.price, 
+       products.stock, 
+       products.main_image,
+       categories.name 
+
+       FROM products 
+    
+       LEFT JOIN categories 
+       ON products.category_id = categories.id
+       ORDER BY products.id DESC
+    """
+    cursor.execute(query)
+
+    products = cursor.fetchall()
+
+    cursor.close()
+
+    return render_template(
+        'admin/products.html',
+        products=products
+    )
+
+if __name__ == '__main__':
+    app.run(debug=True)
