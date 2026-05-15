@@ -39,7 +39,9 @@
 
         <div class="product-card">
 
-            <img src="{{ url_for('static', filename=product[7]) }}">
+            <a href="/product/{{ product[0] }}">
+                <img src="{{ url_for('static', filename=product[7]) }}">
+            </a>
 
             <div class="product-info">
 
@@ -50,12 +52,16 @@
                 </p>
 
                 <p class="price">
-                    ${{ product[3] }}
+                    ${{ product[4] }}
                 </p>
 
-                <button>
-                    Agregar al carrito
-                </button>
+                <form action="/cart/add" method="POST">
+                    <input type="hidden" name="product_id" value="{{ product[0] }}">
+                    <input type="hidden" name="quantity" value="1">
+                    <button type="submit">
+                        Agregar al carrito
+                    </button>
+                </form>
 
             </div>
 

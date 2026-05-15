@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product[1] }} - Velvet Beauty</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <nav>
+        <h1><a href="/" style="text-decoration:none; color:#d63384;">Velvet Beauty</a></h1>
+        <ul>
+            <li><a href="/" style="text-decoration:none; color:#333;">Inicio</a></li>
+            <li><a href="/#products" style="text-decoration:none; color:#333;">Productos</a></li>
+            <li><a href="/cart" style="text-decoration:none; color:#333;">🛒 Carrito</a></li>
+        </ul>
+    </nav>
+
+    <section class="product-detail">
+
+        <div class="product-detail-image">
+            <img src="{{ url_for('static', filename=product[7]) }}" alt="{{ product[1] }}">
+        </div>
+
+        <div class="product-detail-info">
+
+            <p class="detail-category">{{ category_name }}</p>
+            <h1>{{ product[1] }}</h1>
+            <p class="detail-brand">{{ product[2] }}</p>
+
+            <p class="detail-price">${{ product[4] }}</p>
+
+            <p class="detail-description">{{ product[3] }}</p>
+
+            <p class="detail-stock">
+                {% if product[5] > 0 %}
+                    ✅ En stock ({{ product[5] }} disponibles)
+                {% else %}
+                    ❌ Sin stock
+                {% endif %}
+            </p>
+
+            <form action="/cart/add" method="POST">
+                <input type="hidden" name="product_id" value="{{ product[0] }}">
+                <div class="quantity-row">
+                    <label>Cantidad:</label>
+                    <input type="number" name="quantity" value="1" min="1" max="{{ product[5] }}">
+                </div>
+                <button type="submit" class="detail-btn" {% if product[5] == 0 %}disabled{% endif %}>
+                    🛒 Agregar al carrito
+                </button>
+            </form>
+
+        </div>
+
+    </section>
+
+</body>
+</html>

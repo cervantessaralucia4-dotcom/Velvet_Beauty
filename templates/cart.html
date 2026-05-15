@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito - Velvet Beauty</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <nav>
+        <h1><a href="/" style="text-decoration:none; color:#d63384;">Velvet Beauty</a></h1>
+        <ul>
+            <li><a href="/" style="text-decoration:none; color:#333;">Inicio</a></li>
+            <li><a href="/#products" style="text-decoration:none; color:#333;">Productos</a></li>
+            <li><a href="/cart" style="text-decoration:none; color:#d63384; font-weight:bold;">🛒 Carrito</a></li>
+        </ul>
+    </nav>
+
+    <section class="cart-section">
+
+        <h2 class="section-title">Tu Carrito</h2>
+
+        {% if items %}
+
+            <div class="cart-layout">
+
+                <div class="cart-items">
+                    {% for item in items %}
+                    <div class="cart-item">
+
+                        <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.name }}">
+
+                        <div class="cart-item-info">
+                            <h3>{{ item.name }}</h3>
+                            <p class="brand">{{ item.brand }}</p>
+                            <p class="price">${{ "%.2f"|format(item.price) }}</p>
+                        </div>
+
+                        <div class="cart-item-actions">
+                            <form action="/cart/update" method="POST" style="display:inline;">
+                                <input type="hidden" name="product_id" value="{{ item.product_id }}">
+                                <input type="number" name="quantity" value="{{ item.quantity }}" min="1" class="qty-input">
+                                <button type="submit" class="update-btn">Actualizar</button>
+                            </form>
+
+                            <form action="/cart/remove" method="POST" style="display:inline;">
+                                <input type="hidden" name="product_id" value="{{ item.product_id }}">
+                                <button type="submit" class="remove-btn">✕ Quitar</button>
+                            </form>
+                        </div>
+
+                        <p class="item-subtotal">${{ "%.2f"|format(item.subtotal) }}</p>
+
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="cart-summary">
+                    <h3>Resumen del pedido</h3>
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span>${{ "%.2f"|format(total) }}</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Envío</span>
+                        <span>Gratis</span>
+                    </div>
+                    <div class="summary-row total-row">
+                        <span>Total</span>
+                        <span>${{ "%.2f"|format(total) }}</span>
+                    </div>
+                    <button class="detail-btn" style="width:100%; margin-top:20px;">
+                        Proceder al pago
+                    </button>
+                    <a href="/" class="continue-link">← Seguir comprando</a>
+                </div>
+
+            </div>
+
+        {% else %}
+
+            <div class="empty-cart">
+                <p>🛒 Tu carrito está vacío</p>
+                <a href="/" class="detail-btn">Ver productos</a>
+            </div>
+
+        {% endif %}
+
+    </section>
+
+</body>
+</html>

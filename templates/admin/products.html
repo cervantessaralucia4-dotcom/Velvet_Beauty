@@ -115,19 +115,20 @@
 
                         <td>
 
-                            <a href="#"
+                            <a href="/admin/edit-product/{{ product[0] }}"
                                class="edit-btn">
-
                                 Editar
-
                             </a>
 
-                            <a href="#"
-                               class="delete-btn">
-
-                                Eliminar
-
-                            </a>
+                            <form action="/delete-product/{{ product[0] }}"
+                                  method="POST"
+                                  style="display:inline;"
+                                  onsubmit="return confirm('¿Segura que quieres eliminar este producto?')">
+                                <button type="submit" class="delete-btn"
+                                        style="border:none; cursor:pointer; font-size:14px;">
+                                    Eliminar
+                                </button>
+                            </form>
 
                         </td>
 
